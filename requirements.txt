@@ -1,0 +1,9 @@
+Flask
+requests
+pandas
+plotly
+Flask-Caching
+matplotlib
+numpy
+Flask-SQLAlchemy
+PyMySQL

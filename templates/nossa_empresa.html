@@ -1,0 +1,88 @@
+<!-- nossa_empresa.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoViva - Nossa Empresa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global (header, footer, navbar, fontes, reset etc) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS específico desta página -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nossa_empresa.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">eco<span>viva</span></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+            <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+        <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero" style="background-color: #4a7c59; color: #fff; text-align: center; padding: 80px 5%;">
+    <h1>Quem Somos</h1>
+    <p>Paixão por energia limpa. Compromisso com vidas.</p>
+  </section>
+
+  <!-- História -->
+  <section class="section" id="history">
+    <h2>Nossa História</h2>
+    <ul class="timeline">
+      <li class="timeline-item"><h4>2023 – Fundação</h4><p>EcoViva nasce da vontade de democratizar energia solar.</p></li>
+      <li class="timeline-item"><h4>2024 – Projeto Piloto</h4><p>Implementação do primeiro sistema solar em comunidade X.</p></li>
+      <li class="timeline-item"><h4>2025 – Expansão</h4><p>Chegamos a 12 comunidades atendidas.</p></li>
+      <li class="timeline-item"><h4>Futuro</h4><p>Meta de alcançar 50 comunidades até 2026.</p></li>
+    </ul>
+  </section>
+
+  <!-- Equipe -->
+  <section class="section" id="team">
+    <h2>Equipe</h2>
+    <div class="team-grid">
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder1.jpg') }}"><strong>Maria Silva</strong><p>Co-fundadora & CEO</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder2.jpg') }}"><strong>João Pereira</strong><p>CTO & Eng. Solar</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder3.jpg') }}"><strong>Ana Costa</strong><p>COO & Gerente de Projetos</p></div>
+    </div>
+  </section>
+
+  <!-- Parceiros -->
+  <section class="section" id="partners">
+    <h2>Parceiros</h2>
+    <div class="partners-grid">
+      <img src="{{ url_for('static', filename='images/logo_parceiro1.png') }}">
+      <img src="{{ url_for('static', filename='images/logo_parceiro2.png') }}">
+      <img src="{{ url_for('static', filename='images/logo_parceiro3.png') }}">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section"><h4>EcoViva</h4><p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p><div class="footer-contact"><p>Endereço: Rua Exemplo, 123, Cidade, País</p><p>Email: contato@ecoviva.com</p></div></div>
+      <div class="footer-section"><h4>Sobre Nós</h4><ul><li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li><li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li><li><a href="#">Nosso Projeto</a></li></ul></div>
+      <div class="footer-section"><h4>Links Úteis</h4><ul><li><a href="#">Fale Conosco</a></li><li><a href="#">Termos e Condições</a></li></ul></div>
+      <div class="footer-section"><h4>Siga-nos</h4><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
+</body>
+</html>
