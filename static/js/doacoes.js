@@ -57,8 +57,31 @@ function loadCommunitySelect() {
 }
 
 /**
+ * Exibe o modal de PIX com contagem regressiva de 10s
+ */
+function showPixModal(callback) {
+  const pixModal = document.getElementById('pixModal');
+  const countdownEl = document.getElementById('pixCountdown');
+  let countdown = 10;
+  countdownEl.textContent = countdown;
+  pixModal.style.display = 'flex';
+
+  const interval = setInterval(() => {
+    countdown--;
+    countdownEl.textContent = countdown;
+    if (countdown <= 0) clearInterval(interval);
+  }, 1000);
+
+  setTimeout(() => {
+    pixModal.style.display = 'none';
+    callback();
+  }, 10000);
+}
+
+/**
  * Envia a doação para o backend e, em caso de sucesso,
  * atualiza o gráfico e mostra mensagem de confirmação.
+ * Antes disso, simula um pagamento via PIX.
  */
 function donate(event) {
   event.preventDefault();
@@ -85,33 +108,36 @@ function donate(event) {
     return;
   }
 
-  // envia ao backend
-  fetch("/api/add_donation", {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      community_id: communityId,
-      amount: amount
+  // Simula pagamento via PIX
+  showPixModal(() => {
+    // após 10s, envia ao backend
+    fetch("/api/add_donation", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        community_id: communityId,
+        amount: amount
+      })
     })
-  })
-  .then(res => res.json())
-  .then(result => {
-    if (result.error) throw new Error(result.error);
-    // sucesso!
-    messageDiv.textContent = `Obrigado, ${donorName}! Doação de R$ ${amount.toFixed(2)} registrada.`;
-    messageDiv.style.color = "green";
-    messageDiv.style.display = 'block';
-    // limpa valores e atualiza tudo
-    document.getElementById("donorName").value      = "";
-    document.getElementById("donorEmail").value     = "";
-    document.getElementById("communitySelect").value= "";
-    document.getElementById("donationAmount").value = "";
-    updateDonationChart();
-  })
-  .catch(err => {
-    messageDiv.textContent = err.message;
-    messageDiv.style.color = "red";
-    messageDiv.style.display = 'block';
+    .then(res => res.json())
+    .then(result => {
+      if (result.error) throw new Error(result.error);
+      // sucesso!
+      messageDiv.textContent = `Obrigado, ${donorName}! Doação de R$ ${amount.toFixed(2)} registrada.`;
+      messageDiv.style.color = "green";
+      messageDiv.style.display = 'block';
+      // limpa valores e atualiza tudo
+      document.getElementById("donorName").value       = "";
+      document.getElementById("donorEmail").value      = "";
+      document.getElementById("communitySelect").value = "";
+      document.getElementById("donationAmount").value  = "";
+      updateDonationChart();
+    })
+    .catch(err => {
+      messageDiv.textContent = err.message;
+      messageDiv.style.color = "red";
+      messageDiv.style.display = 'block';
+    });
   });
 }
 

@@ -15,6 +15,18 @@
   <script src="/static/js/doacoes_plotly.js"></script>
 </head>
 <body>
+    <!-- Modal PIX oculto por padrão -->
+  <section id="pixModal" style="display:none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h3>Pagamento via PIX</h3>
+      <!-- Coloque aqui seu QR Code em static/images/pix_qrcode.png -->
+      <img src="{{ url_for('static', filename='images/pix_qrcode.png') }}"
+           alt="QR Code PIX" />
+      <p>Escaneie este QR Code com seu app de banco.<br>
+      Fechando em <span id="pixCountdown">10</span> segundos...</p>
+    </div>
+  </section>
   <!-- Cabeçalho / Navbar -->
   <header>
     <div class="logo">eco<span>viva</span></div>
