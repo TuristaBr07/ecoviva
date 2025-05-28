@@ -1,0 +1,91 @@
+.hero-vol{
+  background:#e9f3e9;
+  padding:90px 6%;
+  text-align:center;
+}
+.hero-vol h1{
+  font-size:2.4rem;
+  color:#4a7c59;
+  margin-bottom:18px;
+}
+.hero-vol p{
+  max-width:760px;
+  margin:0 auto 10px;
+  line-height:1.6;
+}
+
+.vol-info{padding:55px 6%;}
+.vol-info h2{text-align:center;margin-bottom:30px;}
+.vol-info .areas{
+  list-style:none;
+  max-width:600px;
+  margin:0 auto;
+  padding:0;
+}
+.vol-info .areas li{
+  margin:14px 0;
+  font-size:1.15rem;
+  line-height:1.5;
+  display:flex;
+  align-items:center;
+}
+.vol-info i{
+  color:#4a7c59;
+  margin-right:10px;
+  flex-shrink:0;
+}
+
+.vol-form{
+  background:#f7f7f7;
+  padding:60px 6%;
+}
+.vol-form h2{text-align:center;margin-bottom:28px;}
+.vol-form .field{
+  margin-bottom:20px;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.vol-form label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:600;
+}
+.vol-form input,
+.vol-form select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  line-height:1.4;
+}
+
+/* ===== Ajuste do botão de envio ===== */
+.vol-form form{
+  text-align:center;          /* centraliza qualquer conteúdo inline */
+}
+
+.vol-form button{
+  display:inline-block;       /* mantém o tamanho natural do botão   */
+  margin-top:18px;            /* espaçamento acima                   */
+  padding:12px 24px;          /* opcional: dá mais “corpo”           */
+}
+
+/* ==== Botão idêntico ao “Ajude-nos” ========================== */
+.btn{
+  display:inline-block;
+  padding:12px 24px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none;
+  transition:background .2s;
+}
+.btn.primary{
+  background:#4a7c59;
+  color:#fff;
+}
+.btn.primary:hover{
+  background:#3c664c;   /* tom levemente mais escuro ao passar o mouse */
+}

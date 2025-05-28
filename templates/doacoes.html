@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoViva - Doações</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global e específico -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/doacoes.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- CDN do Plotly para gráficos -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="/static/js/doacoes_plotly.js"></script>
+</head>
+<body>
+    <!-- Modal PIX oculto por padrão -->
+  <section id="pixModal" style="display:none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h3>Pagamento via PIX</h3>
+      <!-- Coloque aqui seu QR Code em static/images/pix_qrcode.png -->
+      <img src="{{ url_for('static', filename='images/pix_qrcode.png') }}"
+           alt="QR Code PIX" / loading="lazy" decoding="async">
+      <p>Escaneie este QR Code com seu app de banco.<br>
+      Fechando em <span id="pixCountdown">10</span> segundos...</p>
+    </div>
+  </section>
+  <!-- Cabeçalho / Navbar -->
+  <header>
+    <div class="logo">eco<span>viva</span></div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+            <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+        <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Seção Hero Impactante (adaptada do estilo Arena) -->
+  <section class="hero hero-impact">
+    <div class="hero-content">
+      <span class="badge badge-impact">Transforme Vidas</span>
+      <h1>Contribua para um Futuro Sustentável</h1>
+      <p>Ajude comunidades a alcançarem a autossustentabilidade com energia renovável – sua doação faz a diferença!</p>
+      <!-- Exibe a meta de arrecadação (pode ser dinâmico) -->
+      <div class="donation-target">
+        <strong>Meta: R$ 30.000,00</strong>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Use uma imagem de fundo ou de destaque que remeta ao impacto (pode ser substituída) -->
+      <img src="{{ url_for('static', filename='images/mapa.png') }}" alt="Impacto das Doações" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- Seção de Formulário de Doação -->
+  <section class="donation-form-section">
+    <div class="container">
+      <h2>Faça sua Doação</h2>
+      <form id="donationForm">
+        <div class="form-group">
+          <label for="donorName">Nome</label>
+          <input type="text" id="donorName" name="donorName" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="donorEmail">E-mail</label>
+          <input type="email" id="donorEmail" name="donorEmail" placeholder="Seu e-mail" required>
+        </div>
+        <div class="form-group">
+          <label for="communitySelect">Selecione a Comunidade</label>
+          <select id="communitySelect" name="communitySelect" required>
+            <!-- Opções carregadas dinamicamente -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="donationAmount">Valor da Doação (R$)</label>
+          <input type="number" id="donationAmount" name="donationAmount" placeholder="Ex: 50.00" step="0.01" min="0" required>
+        </div>
+        <button type="submit" class="btn primary">Doar Agora</button>
+      </form>
+      <div id="donationMessage" class="message"></div>
+    </div>
+  </section>
+
+  <!-- Seção de Gráfico: Valor Doado por Região -->
+  <section class="donation-progress-section">
+    <div class="container">
+      <h2>Valor Doado por Região</h2>
+      <!-- Container para o gráfico de barras -->
+      <div id="donationBarChart" style="width:100%; max-width:800px; margin:0 auto;"></div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>EcoViva</h4>
+        <p>Conectamos pessoas com ONGs para transformar realidades. Junte-se a nós!</p>
+        <div class="footer-contact">
+          <p>Endereço: Rua Exemplo, 123, Cidade, País</p>
+          <p>Email: contato@ecoviva.com</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Sobre Nós</h4>
+        <ul>
+          <li><a href="#">Missão e Valores</a></li>
+          <li><a href="#">Nossa Empresa</a></li>
+          <li><a href="#">Nosso Projeto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Siga-nos</h4>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Inclusão do arquivo JavaScript externo -->
+  <script src="{{ url_for('static', filename='js/doacoes.js') }}"></script>
+</body>
+</html>

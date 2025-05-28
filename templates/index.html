@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoViva - Página Inicial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Métricas de Impacto - Layout Aperfeiçoado */
+    .metrics {
+      background-color: #f0f8f5;
+      padding: 60px 5%;
+    }
+    .metrics-layout {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .metrics-image {
+      flex: 1 1 50%;
+      min-width: 300px;
+      max-height: 400px;
+      overflow: hidden;
+    }
+    .metrics-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .metrics-poem {
+      flex: 1 1 50%;
+      min-width: 300px;
+      padding: 40px;
+      background-color: #eaf5ed;
+      font-size: 1.2rem;
+      color: #2d3a2e;
+      line-height: 1.7;
+    }
+    .metrics-poem p {
+      margin: 0;
+    }
+    .metrics-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .metric-card {
+      background: #fff;
+      text-align: center;
+      padding: 35px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .metric-card i {
+      color: #4a7c59;
+      margin-bottom: 12px;
+    }
+    .metric-card h3 {
+      font-size: 1.3rem;
+      margin: 12px 0;
+      color: #333;
+    }
+    .metric-card .count {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #4a7c59;
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .metrics-layout {
+        flex-direction: column;
+      }
+      .metrics-poem {
+        font-size: 1rem;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+<!-- Cabeçalho -->
+<header>
+  <div class="logo">eco<span>viva</span></div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <nav>
+    <ul id="navMenu">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+          <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+      <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">Venha participar!</span>
+      <h1>Transforme seu desejo de ajudar em ação!</h1>
+      <p>Conectamos pessoas com ONGs que estão mudando o mundo. Encontre causas que inspiram, doe seu tempo ou recursos e faça parte de algo maior.</p>
+      <div class="buttons">
+       <a href="{{ url_for('voluntariado')   }}" class="btn primary">Ajude-nos</a>
+       <a href="{{ url_for('doacoes_page') }}" class="btn secondary">Doe Agora</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='images/logoarvoore.jpeg') }}" alt="Árvore EcoViva" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- Métricas de Impacto -->
+  <section class="metrics">
+    <div class="metrics-layout">
+      <div class="metrics-image">
+        <img src="{{ url_for('static', filename='images/home.png') }}" alt="Voluntários ajudando" loading="lazy" decoding="async">
+      </div>
+      <div class="metrics-poem">
+        <p>Nas mãos que semeiam esperança, o futuro floresce em luz solar.<br>
+        Cada gesto EcoViva pulsa vida, nas trilhas onde a terra aplaude o bem.<br>
+        Energia que nasce do sol e do coração, reverte o ontem em amanhã sustentável.<br>
+        Que cada raiar seja um convite: renascer mais verde, cultivar união.</p>
+        <h1>Sua energia é a semente que faz o amanhã florescer.</h1>
+      </div>
+    </div>
+    <div class="metrics-cards">
+      <div class="metric-card">
+        <i class="fas fa-users fa-3x"></i>
+        <h3>Comunidades atendidas</h3>
+        <span class="count" data-target="20">0</span>
+      </div>
+      <div class="metric-card">
+        <i class="fas fa-solar-panel fa-3x"></i>
+        <h3>kWh gerados</h3>
+        <span class="count" data-target="850000">0</span>
+      </div>
+      <div class="metric-card">
+        <i class="fas fa-hand-holding-usd fa-3x"></i>
+        <h3>Doações realizadas</h3>
+        <span class="count" data-target="120000">0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>EcoViva</h4>
+        <p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p>
+        <div class="footer-contact">
+          <p>Endereço: Rua Exemplo, 123, Cidade, País</p>
+          <p>Email: contato@ecoviva.com</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Sobre Nós</h4>
+        <ul>
+          <li><a href="#">Missão e Valores</a></li>
+          <li><a href="#">Nossa Empresa</a></li>
+          <li><a href="#">Nosso Projeto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Siga-nos</h4>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.count');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.dataset.target;
+            let current = 0;
+            const step = target / 200;
+            const update = () => {
+              current += step;
+              counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
+              if (current < target) requestAnimationFrame(update);
+              else counter.innerText = target.toLocaleString('pt-BR');
+            };
+            update();
+            obs.unobserve(counter);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => observer.observe(c));
+    });
+  </script>
+</body>
+</html>

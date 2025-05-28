@@ -1,0 +1,90 @@
+<!-- nossa_empresa.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoViva - Nossa Empresa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global (header, footer, navbar, fontes, reset etc) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS específico desta página -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nossa_empresa.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">eco<span>viva</span></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+            <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+        <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero" style="background-color: #4a7c59; color: #fff; text-align: center; padding: 80px 5%;">
+    <h1>Quem Somos</h1>
+    <p>Paixão por energia limpa. Compromisso com vidas.</p>
+  </section>
+
+  <!-- História -->
+  <section class="section" id="history">
+    <h2>Nossa História</h2>
+    <ul class="timeline">
+      <li class="timeline-item"><h4>2024 – Nascimento da Ecoviva</h4><p>A Ecoviva surge como uma iniciativa voltada a facilitar o encontro entre pessoas dispostas a se voluntariar e ONGs que enfrentam dificuldades por falta de engajamento. A proposta era criar uma ponte entre o voluntariado e os projetos socioambientais, incentivando a participação ativa da sociedade em causas urgentes.</p></li>
+<li class="timeline-item"><h4>2025 – Surgimento da Ecoviva Solutions</h4><p>Inspirada pelos princípios da Ecoviva, nasce a Ecoviva Solutions, um novo segmento com foco em impacto direto por meio da tecnologia. Desse modo, a plataforma assume o formato de crowdfunding para financiar instalações de energia solar em comunidades carentes no Brasil. A missão continua a mesma: engajar pessoas em soluções rápidas e acessíveis para transformar a realidade social e ambiental do país.</p></li>
+<li class="timeline-item"><h4>Futuro – Expansão e Inovação Sustentável</h4><p>Com os olhos voltados para o futuro, a Ecoviva Solutions pretende expandir seu modelo para outros países e explorar novas frentes de atuação em causas sociais e ambientais. Sempre com o objetivo de unir tecnologia, engajamento e impacto positivo, a plataforma seguirá evoluindo como uma ferramenta poderosa para construir um mundo mais sustentável e solidário.</p></li>
+    </ul>
+  </section>
+
+  <!-- Equipe -->
+  <section class="section" id="team">
+    <h2>Equipe</h2>
+    <div class="team-grid">
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder1.png') }}"><strong>Gabriel Nunes</strong><p>Product Owner</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder2.png') }}"><strong>Guilherme Oliveira</strong><p>Dev Back-end</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder3.png') }}"><strong>Gabriel Mattos</strong><p>Scrum Master</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder4.png') }}"><strong>Carlos Eduardo</strong><p>Analista de Requisitos</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder5.png') }}"><strong>Victor Gabriel</strong><p>Dev Front-end</p></div>
+      <div class="team-member"><img src="{{ url_for('static', filename='images/founder6.png') }}"><strong>Eduardo Souza</strong><p>Analista de Mercado</p></div>      
+    </div>
+  </section>
+
+  <!-- Parceiros -->
+  <section class="section" id="partners">
+    <h2>Parceiros</h2>
+    <div class="partners-grid">
+      <img src="{{ url_for('static', filename='images/parceiro1.png') }}">
+      <img src="{{ url_for('static', filename='images/parceiro2.jpg') }}">
+      <img src="{{ url_for('static', filename='images/parceiro3.jpg') }}">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section"><h4>EcoViva</h4><p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p><div class="footer-contact"><p>Endereço: Rua Exemplo, 123, Cidade, País</p><p>Email: contato@ecoviva.com</p></div></div>
+      <div class="footer-section"><h4>Sobre Nós</h4><ul><li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li><li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li><li><a href="#">Nosso Projeto</a></li></ul></div>
+      <div class="footer-section"><h4>Links Úteis</h4><ul><li><a href="#">Fale Conosco</a></li><li><a href="#">Termos e Condições</a></li></ul></div>
+      <div class="footer-section"><h4>Siga-nos</h4><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
+</body>
+</html>

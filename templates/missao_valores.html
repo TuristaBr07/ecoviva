@@ -1,0 +1,82 @@
+<!-- missao_valores.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <style>
+    /* Hero background for Missão e Valores */
+    .page-hero {
+      background-image: url("{{ url_for('static', filename='images/hero-missao.jpg') }}");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>EcoViva - Missão e Valores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- CSS específico desta página -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/missao_valores.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">eco<span>viva</span></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+            <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+        <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- Missão -->
+  <section class="section" id="missao">
+    <h2>Missão</h2>
+    <p class="mission-text">No EcoViva, acreditamos que o acesso à energia limpa é um direito de todos. Nossa missão é democratizar soluções solares em comunidades vulneráveis, transformando raios de sol em oportunidades de desenvolvimento.</p>
+  </section>
+
+  <!-- Valores -->
+  <section class="section" id="valores">
+    <h2>Valores</h2>
+    <div class="values-grid">
+      <div class="value-card"><i class="fas fa-lightbulb"></i><h3>Inovação</h3><p>Buscamos sempre novas tecnologias para potencializar resultados.</p></div>
+      <div class="value-card"><i class="fas fa-hands-helping"></i><h3>Colaboração</h3><p>Trabalhamos em rede, unindo esforços de voluntários e ONGs.</p></div>
+      <div class="value-card"><i class="fas fa-seedling"></i><h3>Sustentabilidade</h3><p>Cada projeto é pensado para gerar impacto duradouro.</p></div>
+      <div class="value-card"><i class="fas fa-file-invoice"></i><h3>Transparência</h3><p>Prestamos contas de forma clara e compartilhamos dados.</p></div>
+      <div class="value-card"><i class="fas fa-heart"></i><h3>Empatia</h3><p>Colocamo-nos no lugar de cada comunidade que apoiamos.</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section"><h4>EcoViva</h4><p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p><div class="footer-contact"><p>Endereço: Rua Exemplo, 123, Cidade, País</p><p>Email: contato@ecoviva.com</p></div></div>
+      <div class="footer-section"><h4>Sobre Nós</h4><ul><li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li><li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li><li><a href="#">Nosso Projeto</a></li></ul></div>
+      <div class="footer-section"><h4>Links Úteis</h4><ul><li><a href="#">Fale Conosco</a></li><li><a href="#">Termos e Condições</a></li></ul></div>
+      <div class="footer-section"><h4>Siga-nos</h4><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}
+  </script>
+</body>
+</html>

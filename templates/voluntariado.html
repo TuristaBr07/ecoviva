@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Voluntariado – Ecoviva</title>
+
+  <!-- CSS principal do site (cores, navbar, etc.) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <!-- CSS exclusivo desta página -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/voluntariado.css') }}">
+
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ HEADER original copiado da Home ============ -->
+<header>
+  <div class="logo">eco<span>viva</span></div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav>
+    <ul id="navMenu">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+          <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+        </ul>
+      </li>
+
+      <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+      <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      <li><a href="{{ url_for('voluntariado') }}" class="active">Voluntariado</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- =================== CONTEÚDO PRINCIPAL =================== -->
+<main>
+
+  <section class="hero-vol">
+    <h1>Junte-se a nós como voluntário!</h1>
+    <p>Doe tempo, talento e paixão: ajude ONGs parceiras a ampliar seu impacto socioambiental.</p>
+  </section>
+
+  <section class="vol-info">
+    <h2>Como você pode colaborar</h2>
+    <ul class="areas">
+      <li><i class="fa fa-leaf"></i> Educação ambiental em escolas</li>
+      <li><i class="fa fa-bolt"></i> Suporte técnico em energia solar</li>
+      <li><i class="fa fa-bullhorn"></i> Comunicação & redes sociais</li>
+      <li><i class="fa fa-hand-holding-heart"></i> Captação de recursos</li>
+    </ul>
+  </section>
+
+  <section class="vol-form">
+    <h2>Inscreva-se</h2>
+    <form method="post" action="{{ url_for('inscricao_voluntario') }}">
+      <div class="field">
+        <label>Nome</label>
+        <input name="nome" required>
+      </div>
+
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div class="field">
+        <label>Área de interesse</label>
+        <select name="area">
+          <option value="educacao">Educação ambiental</option>
+          <option value="tecnico">Suporte técnico</option>
+          <option value="comunicacao">Comunicação</option>
+          <option value="captacao">Captação de recursos</option>
+        </select>
+      </div>
+
+      <button class="btn primary" type="submit">Quero ajudar</button>
+    </form>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER original copiado da Home ============ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>EcoViva</h4>
+        <p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p>
+        <div class="footer-contact">
+          <p>Endereço: Rua Exemplo, 123, Cidade, País</p>
+          <p>Email: contato@ecoviva.com</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Sobre Nós</h4>
+        <ul>
+          <li><a href="#">Missão e Valores</a></li>
+          <li><a href="#">Nossa Empresa</a></li>
+          <li><a href="#">Nosso Projeto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Siga-nos</h4>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<!-- Scripts globais já usados na Home -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

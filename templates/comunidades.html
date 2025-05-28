@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoViva - Comunidades</title>
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <!-- CSS do MapLibre GL JS -->
+  <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Cabeçalho / Navbar -->
+  <header>
+    <div class="logo">eco<span>viva</span></div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Sobre nós <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('missao_valores') }}">Missão e Valores</a></li>
+            <li><a href="{{ url_for('nossa_empresa') }}">Nossa Empresa</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('doacoes_page') }}">Doar</a></li>
+        <li><a href="{{ url_for('comunidades_page') }}">Comunidades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Seção Principal de Comunidades -->
+  <section class="communities-section">
+    <div class="hero-content">
+      <h1>Gerencie Comunidades Carentes</h1>
+      <p>Adicione cidades, visualize a irradiância diária e veja como ela impacta a energia solar renovável.</p>
+      <!-- Formulário de Adicionar Cidade -->
+      <div class="box">
+        <div style="display: flex; gap: 20px; align-items: flex-end;">
+          <div style="flex: 1;">
+            <label for="cityName" style="font-weight: 600;">Nome da Cidade</label>
+            <input type="text" id="cityName" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" placeholder="Ex: São Paulo">
+          </div>
+          <div>
+            <button class="btn primary" onclick="addCity()">Adicionar Cidade</button>
+          </div>
+        </div>
+        <div id="addCityMessage" class="text-danger" style="display:none; color: red; font-weight: 600; margin-top: 10px;"></div>
+      </div>
+    </div>
+
+    <!-- Container para Tabela e Mapa -->
+    <div class="section-container">
+      <!-- Tabela de Comunidades -->
+      <div class="box">
+        <h3 style="margin-bottom: 20px;">Comunidades Cadastradas</h3>
+        <table id="communityTable" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: #f1f1f1;">
+              <th style="padding: 8px;">Nome</th>
+              <th style="padding: 8px;">Latitude</th>
+              <th style="padding: 8px;">Longitude</th>
+              <th style="padding: 8px;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Populado dinamicamente -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mapa no Card de Localização -->
+      <div class="box">
+        <h3 style="margin-bottom: 20px;">Localização</h3>
+        <div class="map-container" id="map"></div>
+      </div>
+    </div>
+
+    <!-- Seção de Filtros, Gráfico e Indicadores de Energia Solar -->
+    <div id="infoSection" style="display:none; margin-top: 50px;">
+      <h2 id="communityTitle" style="text-align: center; margin-bottom: 30px;"></h2>
+      <div class="section-container">
+        <!-- Filtros: Inputs do tipo date -->
+        <div class="box" style="max-width: 300px;">
+          <h4 style="margin-bottom: 20px;">Filtrar por Data</h4>
+          <label for="startDate">Data Inicial</label>
+          <input type="date" id="startDate" style="width: 100%; margin-bottom: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+          <label for="endDate">Data Final</label>
+          <input type="date" id="endDate" style="width: 100%; margin-bottom: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+          <button class="btn primary" style="width: 100%;" onclick="updateData()">Atualizar Dados</button>
+        </div>
+        <!-- Gráfico de Irradiância Diária gerado via matplotlib -->
+        <div class="box">
+          <h4>Irradiância Diária</h4>
+          <img id="irradianceChartImg" style="width:100%; max-width:800px;" alt="Gráfico de Irradiância" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>EcoViva</h4>
+        <p>Conectamos pessoas com ONGs para fazer a diferença. Junte-se a nós!</p>
+        <div class="footer-contact">
+          <p>Endereço: Rua Exemplo, 123, Cidade, País</p>
+          <p>Email: contato@ecoviva.com</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Sobre Nós</h4>
+        <ul>
+          <li><a href="#">Missão e Valores</a></li>
+          <li><a href="#">Nossa Empresa</a></li>
+          <li><a href="#">Nosso Projeto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Siga-nos</h4>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- MapLibre GL JS -->
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+  <script src="{{ url_for('static', filename='js/comunidades.js') }}"></script>
+  <script>
+    function toggleMenu() {
+      const navMenu = document.getElementById('navMenu');
+      navMenu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

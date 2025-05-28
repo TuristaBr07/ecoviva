@@ -1,0 +1,99 @@
+
+Guia de Execução do Projeto EcoViva
+
+> Documento criado para facilitar a execução do projeto EcoViva em qualquer computador.
+
+-----------------------------------------------------------
+
+1. PRÉ-REQUISITOS
+
+- Python 3.8 ou superior instalado.
+- pip instalado (geralmente já vem junto com o Python).
+
+Para verificar, abra o terminal (cmd ou powershell) e digite:
+python --version
+
+1.1 POWERSHELL
+
+- Abrir o PowerShell como Administrador e colar esse comando:
+Set-ExecutionPolicy AllSigned -Force
+-----------------------------------------------------------
+
+2. BAIXAR O PROJETO
+
+Tenha a pasta `ecoviva/` no seu computador, contendo:
+
+ecoviva/
+├── app.py
+├── requirements.txt
+├── templates/
+│   ├── index.html
+│   ├── comunidades.html
+│   └── doacoes.html
+├── static/
+    ├── css/
+    ├── js/
+    └── images/
+
+-----------------------------------------------------------
+
+3. CRIAR O AMBIENTE VIRTUAL
+
+No terminal dentro da pasta `ecoviva/`, digite:
+
+cd caminho/para/ecoviva
+
+python -m venv venv
+
+Ative o ambiente virtual:
+
+Windows:
+venv\Scripts\activate
+
+MacOS/Linux:
+source venv/bin/activate
+
+-----------------------------------------------------------
+
+4. INSTALAR AS DEPENDÊNCIAS
+
+pip install -r requirements.txt
+
+-----------------------------------------------------------
+
+5. RODAR A APLICAÇÃO
+
+python app.py
+
+O terminal mostrará:
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+-----------------------------------------------------------
+
+6. ABRIR NO NAVEGADOR
+
+- Página Inicial: http://127.0.0.1:5000/
+- Comunidades: http://127.0.0.1:5000/comunidades
+- Doações: http://127.0.0.1:5000/doacoes
+
+-----------------------------------------------------------
+
+7. PROBLEMAS COMUNS
+
+Erro ativando venv no Windows?
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Erro de dependência?
+pip install -r requirements.txt
+
+-----------------------------------------------------------
+
+8. SAIR DO AMBIENTE VIRTUAL
+
+deactivate
+
+-----------------------------------------------------------
+
+FIM DO GUIA
+
+EcoViva ✨ - Transforme sua vontade de ajudar em ação!
